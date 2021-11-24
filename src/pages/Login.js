@@ -17,6 +17,7 @@ class Login extends Component {
     this.onButtonSubmit = this.onButtonSubmit.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.verifyNameAndUser = this.verifyNameAndUser.bind(this);
+    this.redirectSettings = this.redirectSettings.bind(this);
   }
 
   onInputChange({ target }) {
@@ -53,37 +54,54 @@ class Login extends Component {
     return true;
   }
 
+  redirectSettings() {
+    const { history } = this.props;
+    history.push('/settings');
+  }
+
   render() {
     const { name, email, hasButtonDisabled } = this.state;
+
     return (
-      <form onSubmit={ this.onButtonSubmit }>
-        <h2>Login</h2>
-        <label htmlFor="user-input">
-          Nome:
-          <input
-            id="user-input"
-            data-testid="input-player-name"
-            type="text"
-            name="name"
-            value={ name }
-            onChange={ this.onInputChange }
-          />
-        </label>
-        <label htmlFor="email-input">
-          E-mail:
-          <input
-            id="email-input"
-            data-testid="input-gravatar-email"
-            type="email"
-            name="email"
-            value={ email }
-            onChange={ this.onInputChange }
-          />
-        </label>
-        <button type="submit" data-testid="btn-play" disabled={ hasButtonDisabled }>
-          Jogar
-        </button>
-      </form>
+      <>
+        <form onSubmit={ this.onButtonSubmit }>
+          <h2>Login</h2>
+          <label htmlFor="user-input">
+            Nome:
+            <input
+              id="user-input"
+              data-testid="input-player-name"
+              type="text"
+              name="name"
+              value={ name }
+              onChange={ this.onInputChange }
+            />
+          </label>
+          <label htmlFor="email-input">
+            E-mail:
+            <input
+              id="email-input"
+              data-testid="input-gravatar-email"
+              type="email"
+              name="email"
+              value={ email }
+              onChange={ this.onInputChange }
+            />
+          </label>
+          <button type="submit" data-testid="btn-play" disabled={ hasButtonDisabled }>
+            Jogar
+          </button>
+        </form>
+        <div>
+          <button
+            type="button"
+            data-testid="btn-settings"
+            onClick={ () => this.redirectSettings() }
+          >
+            Configurações
+          </button>
+        </div>
+      </>
     );
   }
 }

@@ -6,6 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Login from './pages/Login';
 import store from './store';
 import Game from './pages/Game';
+import Settings from './pages/Settings';
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/game" component={ Game } />
+          <Route path="/settings" component={ Settings } />
           <Route path="/" component={ Login } />
         </Switch>
       </BrowserRouter>
