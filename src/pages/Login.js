@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getUser, getEmail } from '../actions';
+import { getUser, getEmail, actionApiToken } from '../actions';
 
 class Login extends Component {
   constructor() {
@@ -15,6 +15,7 @@ class Login extends Component {
 
     this.onInputChange = this.onInputChange.bind(this);
     this.onButtonSubmit = this.onButtonSubmit.bind(this);
+    this.handleClick = this.handleClick.bind(this);
     this.verifyNameAndUser = this.verifyNameAndUser.bind(this);
   }
 
@@ -32,6 +33,13 @@ class Login extends Component {
     const { sendEmail, sendUser } = this.props;
     sendEmail(email);
     sendUser(name);
+    this.handleClick();
+  }
+
+  handleClick() {
+    const { history, requestToken } = this.props;
+    history.push('/game');
+    return requestToken();
   }
 
   verifyNameAndUser() {
@@ -81,6 +89,10 @@ class Login extends Component {
 }
 
 Login.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
+  requestToken: PropTypes.func.isRequired,
   sendEmail: PropTypes.func.isRequired,
   sendUser: PropTypes.func.isRequired,
 };
@@ -88,6 +100,7 @@ Login.propTypes = {
 const mapDispatchToProps = (dispatch) => ({
   sendEmail: (email) => dispatch(getEmail(email)),
   sendUser: (user) => dispatch(getUser(user)),
+  requestToken: () => dispatch(actionApiToken()),
 });
 
 export default connect(null, mapDispatchToProps)(Login);
