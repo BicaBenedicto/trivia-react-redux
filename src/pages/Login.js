@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
+import { MD5 } from 'crypto-js';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getUser, getEmail, actionApiToken } from '../actions';
+import { getUser, getEmail, actionApiToken, getUserIcon } from '../actions';
 
 class Login extends Component {
   constructor() {
@@ -38,7 +39,10 @@ class Login extends Component {
   }
 
   handleClick() {
-    const { history, requestToken } = this.props;
+    const { history, requestToken, requestUserIcon } = this.props;
+    const { email } = this.state;
+    const emailConvert = MD5(email).toString();
+    requestUserIcon(emailConvert);
     history.push('/game');
     return requestToken();
   }
@@ -111,6 +115,7 @@ Login.propTypes = {
     push: PropTypes.func,
   }).isRequired,
   requestToken: PropTypes.func.isRequired,
+  requestUserIcon: PropTypes.func.isRequired,
   sendEmail: PropTypes.func.isRequired,
   sendUser: PropTypes.func.isRequired,
 };
@@ -119,6 +124,7 @@ const mapDispatchToProps = (dispatch) => ({
   sendEmail: (email) => dispatch(getEmail(email)),
   sendUser: (user) => dispatch(getUser(user)),
   requestToken: () => dispatch(actionApiToken()),
+  requestUserIcon: (emailConvert) => dispatch(getUserIcon(emailConvert)),
 });
 
 export default connect(null, mapDispatchToProps)(Login);
