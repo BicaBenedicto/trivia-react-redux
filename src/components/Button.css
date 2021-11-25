@@ -1,6 +1,5 @@
-button.answer-button {
+.answer-button {
   background-color: lightyellow;
-  border: none;
   border-radius: 10px;
   box-shadow: 1px 1px 5px gray;
   color: black;
@@ -8,9 +7,9 @@ button.answer-button {
 }
 
 .correct-answer {
-  border: 3px solid rgb(6, 240, 15)!important;
+  border: 3px solid rgb(6, 240, 15);
 }
 
 .wrong-answer {
-  border: 3px solid red!important;
+  border: 3px solid red;
 }
