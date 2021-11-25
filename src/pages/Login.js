@@ -43,8 +43,8 @@ class Login extends Component {
     const { email } = this.state;
     const emailConvert = MD5(email).toString();
     requestUserIcon(emailConvert);
+    requestToken();
     history.push('/game');
-    return requestToken();
   }
 
   verifyNameAndUser() {
