@@ -1,9 +1,9 @@
-import { GET_TOKEN, GET_QUESTIONS, REQUEST_QUESTIONS } from '../actions';
+import { GET_TOKEN, GET_QUESTIONS } from '../actions';
 
 const INITIAL_STATE = {
   token: '',
   results: [],
-  isLoading: false,
+  isLoading: true,
 };
 
 const token = (state = INITIAL_STATE, { type, payload }) => {
@@ -12,11 +12,6 @@ const token = (state = INITIAL_STATE, { type, payload }) => {
     return {
       ...state,
       token: payload,
-    };
-  case REQUEST_QUESTIONS:
-    return {
-      ...state,
-      isLoading: true,
     };
   case GET_QUESTIONS:
     return {

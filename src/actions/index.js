@@ -6,17 +6,12 @@ const URL_USER_ICON = 'https://www.gravatar.com/avatar/';
 export const GET_USER = 'GET_USER';
 export const GET_EMAIL = 'GET_EMAIL';
 export const GET_TOKEN = 'GET_TOKEN';
-export const REQUEST_QUESTIONS = 'REQUEST_QUESTIONS';
 export const GET_QUESTIONS = 'GET_QUESTIONS';
 export const GET_USER_ICON = 'GET_USER_ICON';
 
 export const getToken = (payload) => ({
   type: GET_TOKEN,
   payload,
-});
-
-export const requestQuestions = () => ({
-  type: GET_QUESTIONS,
 });
 
 export const getQuestions = (payload) => ({
