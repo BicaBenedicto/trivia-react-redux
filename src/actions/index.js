@@ -8,6 +8,7 @@ export const GET_EMAIL = 'GET_EMAIL';
 export const GET_TOKEN = 'GET_TOKEN';
 export const GET_QUESTIONS = 'GET_QUESTIONS';
 export const GET_USER_ICON = 'GET_USER_ICON';
+export const TOGGLE_SELECTED = 'TOGGLE_SELECTED';
 
 export const getToken = (payload) => ({
   type: GET_TOKEN,
@@ -59,3 +60,5 @@ export const actionApiToken = () => async (dispatch) => {
     console.error(error);
   }
 };
+
+export const toggleSelected = () => ({ type: TOGGLE_SELECTED });
