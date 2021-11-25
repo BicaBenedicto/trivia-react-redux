@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import Loading from '../components/Loading';
 import Header from '../components/Header';
 import Button from '../components/Button';
+import { getAssertion } from '../actions';
+import calculatedScorePoints from '../services/Score';
 
 const answerButton = 'answer-button';
 
@@ -23,12 +25,23 @@ class Game extends Component {
     this.toggleAnswerSelected = this.toggleAnswerSelected.bind(this);
     this.randomAnswer = this.randomAnswer.bind(this);
     this.toggleButtonsDisabled = this.toggleButtonsDisabled.bind(this);
+    this.resetTimer = this.resetTimer.bind(this);
     this.onNextButtonClick = this.onNextButtonClick.bind(this);
   }
 
   componentDidMount() {
+    const { player } = this.props;
     const ONE_SECOND = 1000;
     const FIVE_SECONDS = 5000;
+
+    localStorage.setItem('state', JSON.stringify(
+      {
+        player: {
+          ...player,
+          assertions: player.assertions.length,
+        },
+      },
+    ));
 
     setTimeout(() => {
       this.intervalId = setInterval(() => {
@@ -46,21 +59,47 @@ class Game extends Component {
   }
 
   onButtonClick({ target }) {
-    const { className } = target;
+    const { className, name } = target;
+    const { timer, index } = this.state;
+    const { results, saveAssertion, player } = this.props;
     if (className === answerButton) {
       this.toggleAnswerSelected();
       clearInterval(this.intervalId);
+      if (name === 'correct-answer') {
+        const assertion = [{ timer, difficulty: results[index].difficulty }];
+        const scorePoints = calculatedScorePoints(assertion);
+        saveAssertion({ assertion, score: scorePoints });
+        localStorage.setItem('state', JSON.stringify(
+          {
+            player: {
+              ...player,
+              score: player.score + scorePoints,
+              assertions: player.assertions.length + 1,
+            },
+          },
+        ));
+      }
     }
   }
 
   onNextButtonClick() {
-    const { results } = this.props;
-    this.setState((prevState) => ({
-      index: (results.length > prevState.index
-        ? prevState.index + 1 : prevState.index),
-    }));
-    this.toggleAnswerSelected();
-    this.randomAnswer();
+    const { results, history } = this.props;
+    const { index } = this.state;
+    if (index === results.length - 1) {
+      history.push('/feedback');
+    } else {
+      this.setState((prevState) => ({
+        index: prevState.index + 1,
+      }), () => this.randomAnswer());
+      this.toggleAnswerSelected();
+      this.resetTimer();
+    }
+  }
+
+  resetTimer() {
+    this.setState({
+      timer: 30,
+    });
   }
 
   toggleAnswerSelected() {
@@ -91,7 +130,6 @@ class Game extends Component {
       datatestid: `wrong-answer-${randomIndex}`,
       value: wrongAnswer[randomIndex],
     });
-
     this.setState({ answers });
   }
 
@@ -154,12 +192,26 @@ class Game extends Component {
 
 Game.propTypes = {
   isLoading: PropTypes.bool.isRequired,
+  player: PropTypes.shape({
+    score: PropTypes.number,
+    assertions: PropTypes.arrayOf(PropTypes.object),
+  }).isRequired,
   results: PropTypes.arrayOf(PropTypes.object).isRequired,
+  saveAssertion: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
 };
+
+const mapDispatchToProps = (dispatch) => ({
+  saveAssertion: (answer) => dispatch(getAssertion(answer)),
+});
 
 const mapStateToProps = (state) => ({
   results: state.token.results,
   isLoading: state.token.isLoading,
+  answersList: state.player.assertions,
+  player: state.player,
 });
 
-export default connect(mapStateToProps)(Game);
+export default connect(mapStateToProps, mapDispatchToProps)(Game);

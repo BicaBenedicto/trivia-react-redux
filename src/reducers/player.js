@@ -1,8 +1,8 @@
-import { GET_USER, GET_EMAIL, GET_USER_ICON } from '../actions';
+import { GET_USER, GET_EMAIL, GET_USER_ICON, GET_ASSERTIONS } from '../actions';
 
 const INITIAL_STATE = {
   name: '',
-  assertions: '',
+  assertions: [],
   score: 0,
   gravatarEmail: '',
   userIcon: '',
@@ -24,6 +24,12 @@ const player = (state = INITIAL_STATE, { type, payload }) => {
     return {
       ...state,
       userIcon: payload,
+    };
+  case GET_ASSERTIONS:
+    return {
+      ...state,
+      assertions: [...state.assertions, payload.assertion],
+      score: state.score + payload.score,
     };
   default:
     return state;
