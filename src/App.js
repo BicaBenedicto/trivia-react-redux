@@ -7,12 +7,14 @@ import Login from './pages/Login';
 import store from './store';
 import Game from './pages/Game';
 import Settings from './pages/Settings';
+import Feedback from './pages/Feedback';
 
 export default function App() {
   return (
     <Provider store={ store }>
       <BrowserRouter>
         <Switch>
+          <Route path="/feedback" component={ Feedback } />
           <Route path="/game" component={ Game } />
           <Route path="/settings" component={ Settings } />
           <Route path="/" component={ Login } />

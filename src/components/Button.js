@@ -27,6 +27,7 @@ class Button extends Component {
         className={ answerSelected ? this.checkDatatestid() : answerButton }
         onClick={ onButtonClick }
         disabled={ hasButtonDisabled }
+        name={ datatestid }
       >
         { value }
       </button>

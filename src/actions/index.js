@@ -9,6 +9,8 @@ export const GET_TOKEN = 'GET_TOKEN';
 export const GET_QUESTIONS = 'GET_QUESTIONS';
 export const GET_USER_ICON = 'GET_USER_ICON';
 export const TOGGLE_SELECTED = 'TOGGLE_SELECTED';
+export const GET_SCORE = 'GET_SCORE';
+export const GET_ASSERTIONS = 'GET_ASSERTIONS';
 
 export const getToken = (payload) => ({
   type: GET_TOKEN,
@@ -62,3 +64,7 @@ export const actionApiToken = () => async (dispatch) => {
 };
 
 export const toggleSelected = () => ({ type: TOGGLE_SELECTED });
+
+export const getAssertion = (payload, payload2) => (
+  { type: GET_ASSERTIONS, payload, payload2 }
+);
