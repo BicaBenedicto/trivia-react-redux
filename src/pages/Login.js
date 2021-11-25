@@ -19,14 +19,14 @@ class Login extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.verifyNameAndUser = this.verifyNameAndUser.bind(this);
     this.redirectSettings = this.redirectSettings.bind(this);
+    this.changeButtonDisabled = this.changeButtonDisabled.bind(this);
   }
 
   onInputChange({ target }) {
     const { name, value } = target;
     this.setState({
       [name]: value,
-      hasButtonDisabled: this.verifyNameAndUser(),
-    });
+    }, this.changeButtonDisabled);
   }
 
   onButtonSubmit(e) {
@@ -36,6 +36,12 @@ class Login extends Component {
     sendEmail(email);
     sendUser(name);
     this.handleClick();
+  }
+
+  changeButtonDisabled() { // Decide se o botão  de login deve ficar ativado ou desativado
+    this.setState({
+      hasButtonDisabled: this.verifyNameAndUser(),
+    });
   }
 
   handleClick() {
