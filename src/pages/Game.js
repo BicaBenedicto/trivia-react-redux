@@ -64,12 +64,13 @@ class Game extends Component {
       clearInterval(this.intervalId);
       if (name === 'correct-answer') {
         const assertion = [{ timer, difficulty: results[index].difficulty }];
-        saveAssertion(assertion, calculatedScorePoints(assertion));
+        const scorePoints = calculatedScorePoints(assertion);
+        saveAssertion({ assertion, score: scorePoints });
         localStorage.setItem('state', JSON.stringify(
           {
             player: {
               ...player,
-              score: player.score + calculatedScorePoints(assertion),
+              score: player.score + scorePoints,
               assertions: [...player.assertions, assertion],
             },
           },

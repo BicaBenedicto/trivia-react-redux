@@ -65,6 +65,6 @@ export const actionApiToken = () => async (dispatch) => {
 
 export const toggleSelected = () => ({ type: TOGGLE_SELECTED });
 
-export const getAssertion = (payload, payload2) => (
-  { type: GET_ASSERTIONS, payload, payload2 }
+export const getAssertion = (payload) => (
+  { type: GET_ASSERTIONS, payload }
 );

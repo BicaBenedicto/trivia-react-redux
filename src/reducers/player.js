@@ -8,7 +8,7 @@ const INITIAL_STATE = {
   userIcon: '',
 };
 
-const player = (state = INITIAL_STATE, { type, payload, payload2 }) => {
+const player = (state = INITIAL_STATE, { type, payload }) => {
   switch (type) {
   case GET_USER:
     return {
@@ -28,8 +28,8 @@ const player = (state = INITIAL_STATE, { type, payload, payload2 }) => {
   case GET_ASSERTIONS:
     return {
       ...state,
-      assertions: [...state.assertions, payload],
-      score: state.score + payload2,
+      assertions: [...state.assertions, payload.assertion],
+      score: state.score + payload.score,
     };
   default:
     return state;
