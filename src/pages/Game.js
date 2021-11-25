@@ -36,7 +36,10 @@ class Game extends Component {
 
     localStorage.setItem('state', JSON.stringify(
       {
-        player,
+        player: {
+          ...player,
+          assertions: player.assertions.length,
+        },
       },
     ));
 
@@ -71,7 +74,7 @@ class Game extends Component {
             player: {
               ...player,
               score: player.score + scorePoints,
-              assertions: [...player.assertions, assertion],
+              assertions: player.assertions.length + 1,
             },
           },
         ));
