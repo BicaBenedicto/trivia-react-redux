@@ -23,6 +23,7 @@ class Game extends Component {
     this.toggleAnswerSelected = this.toggleAnswerSelected.bind(this);
     this.randomAnswer = this.randomAnswer.bind(this);
     this.toggleButtonsDisabled = this.toggleButtonsDisabled.bind(this);
+    this.onNextButtonClick = this.onNextButtonClick.bind(this);
   }
 
   componentDidMount() {
@@ -40,6 +41,7 @@ class Game extends Component {
     if (prevState.timer === 1) {
       clearInterval(this.intervalId);
       this.toggleButtonsDisabled();
+      this.toggleAnswerSelected();
     }
   }
 
@@ -49,6 +51,16 @@ class Game extends Component {
       this.toggleAnswerSelected();
       clearInterval(this.intervalId);
     }
+  }
+
+  onNextButtonClick() {
+    const { results } = this.props;
+    this.setState((prevState) => ({
+      index: (results.length > prevState.index
+        ? prevState.index + 1 : prevState.index),
+    }));
+    this.toggleAnswerSelected();
+    this.randomAnswer();
   }
 
   toggleAnswerSelected() {
@@ -96,7 +108,7 @@ class Game extends Component {
   }
 
   render() {
-    const { timer, answers, answerSelected, hasButtonDisabled } = this.state;
+    const { timer, answers, answerSelected, hasButtonDisabled, index } = this.state;
     const { results, isLoading } = this.props;
     if (results.length !== 0 && answers.length === 0) this.randomAnswer();
     return (
@@ -109,10 +121,10 @@ class Game extends Component {
                 <span
                   data-testid="question-category"
                 >
-                  { results[0].category }
+                  { results[index].category }
 
                 </span>
-                <span data-testid="question-text">{ results[0].question }</span>
+                <span data-testid="question-text">{ results[index].question }</span>
                 <span>{timer}</span>
               </div>
               <div>
@@ -127,6 +139,12 @@ class Game extends Component {
                   />
                 )) }
               </div>
+              { answerSelected && <Button
+                datatestid="btn-next"
+                value="Próxima"
+                onButtonClick={ this.onNextButtonClick }
+                answerSelected={ answerSelected }
+              /> }
             </div>
           )}
       </>
