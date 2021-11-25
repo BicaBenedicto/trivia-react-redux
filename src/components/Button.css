@@ -1,0 +1,16 @@
+button {
+  background-color: lightyellow;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px gray;
+  color: black;
+  padding: 2px 10px;
+}
+
+.correct-answer {
+  border: 3px solid rgb(6, 240, 15);
+}
+
+.wrong-answer {
+  border: 3px solid red;
+}
