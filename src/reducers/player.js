@@ -1,4 +1,5 @@
-import { GET_USER, GET_EMAIL, GET_USER_ICON, GET_ASSERTIONS } from '../actions';
+import { GET_USER,
+  GET_EMAIL, GET_USER_ICON, GET_ASSERTIONS, RESET_ASSERTIONS } from '../actions';
 
 const INITIAL_STATE = {
   name: '',
@@ -30,6 +31,12 @@ const player = (state = INITIAL_STATE, { type, payload }) => {
       ...state,
       assertions: [...state.assertions, payload.assertion],
       score: state.score + payload.score,
+    };
+  case RESET_ASSERTIONS:
+    return {
+      ...state,
+      assertions: [],
+      score: 0,
     };
   default:
     return state;
