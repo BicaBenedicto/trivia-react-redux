@@ -7,7 +7,7 @@ class Ranking extends Component {
     const recoveryData = localStorage.getItem('state');
     const player = JSON.parse(recoveryData);
 
-    console.log(Object.entries(player));
+    console.log(player);
     Object.values(player).map(({ name, score, playerIcon, assertions }, index) => (
       <div key={ index }>
         <span data-testid={ `player-name-${index}` }>
