@@ -17,7 +17,7 @@ class Feedback extends Component {
 
   render() {
     const GOOD_RESULT = 3;
-    const { assertions, score } = this.props;
+    const { assertions, score, history } = this.props;
     return (
       <div>
         <Header />
@@ -36,6 +36,13 @@ class Feedback extends Component {
           onClick={ this.handleClick }
         >
           Jogar novamente
+        </button>
+        <button
+          type="button"
+          data-testid="btn-ranking"
+          onClick={ () => history.push('/ranking') }
+        >
+          Ver Ranking
         </button>
       </div>
     );
