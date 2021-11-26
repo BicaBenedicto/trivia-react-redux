@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import { Route, Switch } from 'react-router';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
