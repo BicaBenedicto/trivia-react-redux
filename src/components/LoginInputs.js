@@ -6,7 +6,7 @@ class LoginInputs extends React.Component {
   render() {
     const { name, email, onInputChange, hasButtonDisabled } = this.props;
     return (
-      <div>
+      <div className="col-md-3 offset-md-4">
         <Row className="mb-3">
           <h2>Login</h2>
           <Form.Label htmlFor="user-input">
@@ -21,17 +21,19 @@ class LoginInputs extends React.Component {
             />
           </Form.Label>
         </Row>
-        <Form.Label htmlFor="email-input">
-          E-mail:
-          <Form.Control
-            id="email-input"
-            data-testid="input-gravatar-email"
-            type="email"
-            name="email"
-            value={ email }
-            onChange={ onInputChange }
-          />
-        </Form.Label>
+        <Row>
+          <Form.Label htmlFor="email-input">
+            E-mail:
+            <Form.Control
+              id="email-input"
+              data-testid="input-gravatar-email"
+              type="email"
+              name="email"
+              value={ email }
+              onChange={ onInputChange }
+            />
+          </Form.Label>
+        </Row>
         <Button
           variant="outline-success"
           type="submit"

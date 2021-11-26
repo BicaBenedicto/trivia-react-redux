@@ -75,7 +75,7 @@ class Login extends Component {
     const { name, email, hasButtonDisabled } = this.state;
 
     return (
-      <>
+      <div>
         <Form className="mb-3" onSubmit={ this.onButtonSubmit }>
           <LoginInputs
             name={ name }
@@ -94,7 +94,7 @@ class Login extends Component {
             Configurações
           </Button>
         </div>
-      </>
+      </div>
     );
   }
 }
