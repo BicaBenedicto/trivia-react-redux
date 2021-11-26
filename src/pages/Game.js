@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Loading from '../components/Loading';
 import Header from '../components/Header';
 import Button from '../components/Button';
-import { getAssertion } from '../actions';
+import { getAssertion, resetAssertions } from '../actions';
 import calculatedScorePoints from '../services/Score';
 
 const answerButton = 'answer-button';
@@ -30,24 +30,23 @@ class Game extends Component {
   }
 
   componentDidMount() {
-    const { player } = this.props;
+    const { player, resetPlayer } = this.props;
     const ONE_SECOND = 1000;
-    const FIVE_SECONDS = 5000;
 
     localStorage.setItem('state', JSON.stringify(
       {
         player: {
           ...player,
-          assertions: player.assertions.length,
+          assertions: 0,
+          score: 0,
         },
       },
     ));
+    resetPlayer();
 
-    setTimeout(() => {
-      this.intervalId = setInterval(() => {
-        this.stopwatchQuestion();
-      }, ONE_SECOND);
-    }, FIVE_SECONDS);
+    this.intervalId = setInterval(() => {
+      this.stopwatchQuestion();
+    }, ONE_SECOND);
   }
 
   componentDidUpdate(_prevProps, prevState) {
@@ -83,16 +82,34 @@ class Game extends Component {
   }
 
   onNextButtonClick() {
-    const { results, history } = this.props;
+    const { results, history, player } = this.props;
     const { index } = this.state;
     if (index === results.length - 1) {
       history.push('/feedback');
+      const ranking = JSON.parse(localStorage.getItem('ranking'));
+      if (ranking) {
+        this.verifiyPlayerInRanking(ranking, player);
+      } else {
+        localStorage.setItem('ranking', JSON.stringify([player]));
+      }
     } else {
       this.setState((prevState) => ({
         index: prevState.index + 1,
       }), () => this.randomAnswer());
       this.toggleAnswerSelected();
       this.resetTimer();
+    }
+  }
+
+  verifiyPlayerInRanking(ranking, player) {
+    if (ranking.some((rPlayer) => rPlayer.gravatarEmail === player.gravatarEmail)) {
+      const oldRanking = [...ranking];
+      const newRanking = oldRanking
+        .filter(({ gravatarEmail }) => (gravatarEmail !== player.gravatarEmail));
+      localStorage.setItem('ranking', JSON.stringify([...newRanking, player]));
+    } else {
+      const newRanking = [...ranking, player];
+      localStorage.setItem('ranking', JSON.stringify(newRanking));
     }
   }
 
@@ -195,16 +212,20 @@ Game.propTypes = {
   player: PropTypes.shape({
     score: PropTypes.number,
     assertions: PropTypes.arrayOf(PropTypes.object),
+    name: PropTypes.string.isRequired,
+    gravatarEmail: PropTypes.string.isRequired,
   }).isRequired,
   results: PropTypes.arrayOf(PropTypes.object).isRequired,
   saveAssertion: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,
+  resetPlayer: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
   saveAssertion: (answer) => dispatch(getAssertion(answer)),
+  resetPlayer: () => dispatch(resetAssertions()),
 });
 
 const mapStateToProps = (state) => ({

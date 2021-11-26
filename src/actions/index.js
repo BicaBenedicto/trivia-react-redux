@@ -11,6 +11,7 @@ export const GET_USER_ICON = 'GET_USER_ICON';
 export const TOGGLE_SELECTED = 'TOGGLE_SELECTED';
 export const GET_SCORE = 'GET_SCORE';
 export const GET_ASSERTIONS = 'GET_ASSERTIONS';
+export const RESET_ASSERTIONS = 'RESET_ASSERTIONS';
 
 export const getToken = (payload) => ({
   type: GET_TOKEN,
@@ -68,3 +69,5 @@ export const toggleSelected = () => ({ type: TOGGLE_SELECTED });
 export const getAssertion = (payload) => (
   { type: GET_ASSERTIONS, payload }
 );
+
+export const resetAssertions = () => ({ type: RESET_ASSERTIONS });
