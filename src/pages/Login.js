@@ -6,6 +6,7 @@ import { Button, Form } from 'react-bootstrap';
 import { getUser, getEmail, actionApiToken, getUserIcon } from '../actions';
 import LoginInputs from '../components/LoginInputs';
 import '../CSS/login.css';
+import trivia from '../trivia.png';
 
 class Login extends Component {
   constructor() {
@@ -77,6 +78,12 @@ class Login extends Component {
 
     return (
       <div>
+        <img
+          src={ trivia }
+          alt="trivia"
+          className="w-25 p-3
+        position-absolute top-0 start-50 translate-middle-x"
+        />
         <Form className="mb-3" onSubmit={ this.onButtonSubmit }>
           <LoginInputs
             name={ name }
