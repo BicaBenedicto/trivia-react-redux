@@ -1,0 +1,10 @@
+body {
+    background-color: #7cffcb;
+    background-image: linear-gradient(315deg, #7cffcb 0%, #74f2ce 74%);
+    
+}
+
+.loginCard {
+    background-color: #ebeceb;
+    font-family: monospace;
+}

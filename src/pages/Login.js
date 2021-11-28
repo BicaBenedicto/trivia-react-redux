@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Button, Form } from 'react-bootstrap';
 import { getUser, getEmail, actionApiToken, getUserIcon } from '../actions';
 import LoginInputs from '../components/LoginInputs';
+import '../CSS/login.css';
 
 class Login extends Component {
   constructor() {
@@ -86,6 +87,7 @@ class Login extends Component {
         </Form>
         <div>
           <Button
+            className="m-2"
             variant="secondary"
             type="button"
             data-testid="btn-settings"
