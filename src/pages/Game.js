@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import Button from '../components/Button';
 import { getAssertion, resetAssertions } from '../actions';
 import calculatedScorePoints from '../services/Score';
+import '../CSS/timer.css';
 
 const answerButton = 'answer-button';
 
@@ -171,35 +172,41 @@ class Game extends Component {
         <Header />
         { isLoading ? <Loading />
           : (
-            <div>
-              <div>
-                <span
-                  data-testid="question-category"
-                >
-                  { results[index].category }
+            <div className="timer">
+              <span>{`TEMPO: ${timer}`}</span>
+              <div
+                className="d-block
+                position-absolute top-50 start-50 translate-middle shadow p-3 mb-5 rounded
+                "
+              >
+                <div>
+                  <span
+                    data-testid="question-category"
+                  >
+                    { results[index].category }
 
-                </span>
-                <span data-testid="question-text">{ results[index].question }</span>
-                <span>{timer}</span>
+                  </span>
+                  <span data-testid="question-text">{ results[index].question }</span>
+                </div>
+                <div className="p-3">
+                  { answers.map((answer, i) => (
+                    <Button
+                      key={ i }
+                      datatestid={ answer.datatestid }
+                      value={ answer.value }
+                      onButtonClick={ this.onButtonClick }
+                      answerSelected={ answerSelected }
+                      hasButtonDisabled={ hasButtonDisabled }
+                    />
+                  )) }
+                </div>
+                { answerSelected && <Button
+                  datatestid="btn-next"
+                  value="Próxima"
+                  onButtonClick={ this.onNextButtonClick }
+                  answerSelected={ answerSelected }
+                /> }
               </div>
-              <div>
-                { answers.map((answer, i) => (
-                  <Button
-                    key={ i }
-                    datatestid={ answer.datatestid }
-                    value={ answer.value }
-                    onButtonClick={ this.onButtonClick }
-                    answerSelected={ answerSelected }
-                    hasButtonDisabled={ hasButtonDisabled }
-                  />
-                )) }
-              </div>
-              { answerSelected && <Button
-                datatestid="btn-next"
-                value="Próxima"
-                onButtonClick={ this.onNextButtonClick }
-                answerSelected={ answerSelected }
-              /> }
             </div>
           )}
       </>

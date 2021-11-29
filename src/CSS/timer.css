@@ -1,0 +1,7 @@
+.timer {
+    display: flex;
+    text-align: center;
+    padding: 5px;
+    justify-content: center;
+    margin: 90px;
+}
