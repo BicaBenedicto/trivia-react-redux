@@ -7,4 +7,5 @@ body {
 .loginCard {
     background-color: #ebeceb;
     font-family: monospace;
+    border-radius: 20px;
 }

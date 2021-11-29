@@ -9,7 +9,7 @@ class LoginInputs extends React.Component {
     return (
       <div
         className="d-block
-       position-absolute top-50 start-50 translate-middle shadow p-3 mb-5 rounded
+       position-absolute top-50 start-50 translate-middle shadow p-3 mb-5
        loginCard"
       >
         <Row>
