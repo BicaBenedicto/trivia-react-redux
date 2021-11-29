@@ -3,10 +3,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Loading from '../components/Loading';
 import Header from '../components/Header';
-import Button from '../components/Button';
+import Buttons from '../components/Button';
 import { getAssertion, resetAssertions } from '../actions';
 import calculatedScorePoints from '../services/Score';
 import '../CSS/timer.css';
+import '../CSS/game.css';
 
 const answerButton = 'answer-button';
 
@@ -172,14 +173,14 @@ class Game extends Component {
         <Header />
         { isLoading ? <Loading />
           : (
-            <div className="timer">
-              <span>{`TEMPO: ${timer}`}</span>
               <div
-                className="d-flex
-                position-relative top-50 start-50 translate-middle shadow p-3 mb-5 rounded
-                "
+                className="game-body"
               >
-                <div>
+                <div className="timer">
+                  <i class="material-icons">alarm</i>
+                  <span>{timer}</span>
+                </div>
+                <div className="questions-body">
                   <span
                     data-testid="question-category"
                   >
@@ -188,9 +189,9 @@ class Game extends Component {
                   </span>
                   <span data-testid="question-text">{ results[index].question }</span>
                 </div>
-                <div className="p-3">
+                <div className="p-3 answer-body">
                   { answers.map((answer, i) => (
-                    <Button
+                    <Buttons
                       key={ i }
                       datatestid={ answer.datatestid }
                       value={ answer.value }
@@ -200,13 +201,14 @@ class Game extends Component {
                     />
                   )) }
                 </div>
-                { answerSelected && <Button
-                  datatestid="btn-next"
-                  value="Próxima"
-                  onButtonClick={ this.onNextButtonClick }
-                  answerSelected={ answerSelected }
-                /> }
-              </div>
+                { answerSelected && <button
+                  data-testid="btn-next"
+                  className="btn-success rounded"
+                  onClick={ this.onNextButtonClick }
+                >
+                  "Próxima"
+                </button>
+                 }
             </div>
           )}
       </>

@@ -24,7 +24,7 @@ class Feedback extends Component {
         <Header />
         <div
           className="d-block
-        position-absolute top-50 start-50 translate-middle shadow p-3 mb-5 rounded
+        position-absolute top-50 start-50 translate-middle shadow p-3 mb-5
         loginCard"
         >
           {
@@ -47,6 +47,7 @@ class Feedback extends Component {
           <button
             type="button"
             data-testid="btn-play-again"
+            className="btn-play-again glow-on-hover"
             onClick={ this.handleClick }
           >
             Jogar novamente
@@ -54,6 +55,7 @@ class Feedback extends Component {
           <button
             type="button"
             data-testid="btn-ranking"
+            className="btn-ranking glow-on-hover"
             onClick={ () => history.push('/ranking') }
           >
             Ver Ranking

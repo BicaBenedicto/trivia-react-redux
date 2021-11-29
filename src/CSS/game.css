@@ -1,0 +1,31 @@
+.game-body {
+    background-color: #ebecebcb;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: space-around;
+    position: relative;
+    margin: 0 auto;
+    width: 800px;
+}
+
+.questions-body {
+    align-items: center;
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    text-align: center;
+    width: 50%;
+}
+
+.questions-body span {
+    margin: 10px 0;
+}
+
+.answer-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

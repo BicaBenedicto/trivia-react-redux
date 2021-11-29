@@ -21,19 +21,19 @@ class Header extends Component {
         >
           {score}
         </span>
-        <div className="icon">
+        <div className="icon-user-body">
+        <span
+            data-testid="header-player-name"
+            className="user-name-header"
+          >
+            {username}
+          </span>
           <img
             src={ userIcon }
             alt="icon-user"
             data-testid="header-profile-picture"
             className="user-icon-header"
           />
-          <span
-            data-testid="header-player-name"
-            className="user-name-header"
-          >
-            {username}
-          </span>
         </div>
       </header>
     );

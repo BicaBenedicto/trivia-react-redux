@@ -77,33 +77,35 @@ class Login extends Component {
     const { name, email, hasButtonDisabled } = this.state;
 
     return (
-      <div>
-        <img
-          src={ trivia }
-          alt="trivia"
-          className="w-25 p-3
-        position-absolute top-0 start-50 translate-middle-x"
-        />
-        <Form className="mb-3" onSubmit={ this.onButtonSubmit }>
-          <LoginInputs
-            name={ name }
-            email={ email }
-            hasButtonDisabled={ hasButtonDisabled }
-            onInputChange={ this.onInputChange }
-          />
-        </Form>
+      <>
         <div>
-          <Button
-            className="m-2"
-            variant="secondary"
-            type="button"
-            data-testid="btn-settings"
-            onClick={ () => this.redirectSettings() }
-          >
-            Configurações
-          </Button>
+          <img
+            src={ trivia }
+            alt="trivia"
+            className="w-25 p-3
+          position-absolute top-0 start-50 translate-middle-x"
+          />
+          <Form className="mb-3" onSubmit={ this.onButtonSubmit }>
+            <LoginInputs
+              name={ name }
+              email={ email }
+              hasButtonDisabled={ hasButtonDisabled }
+              onInputChange={ this.onInputChange }
+            />
+          </Form>
         </div>
+        <div>
+        <Button
+          className="m-2 config-button"
+          variant="secondary"
+          type="button"
+          data-testid="btn-settings"
+          onClick={ () => this.redirectSettings() }
+        >
+          Configurações
+        </Button>
       </div>
+    </>
     );
   }
 }
