@@ -5,3 +5,8 @@
 .wrong-answer {
   border: 3px solid red;
 }
+
+.answer-button {
+  /* gap: 3em !important; */
+  margin: 10px;
+}

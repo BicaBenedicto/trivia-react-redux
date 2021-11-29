@@ -175,8 +175,8 @@ class Game extends Component {
             <div className="timer">
               <span>{`TEMPO: ${timer}`}</span>
               <div
-                className="d-block
-                position-absolute top-50 start-50 translate-middle shadow p-3 mb-5 rounded
+                className="d-flex
+                position-relative top-50 start-50 translate-middle shadow p-3 mb-5 rounded
                 "
               >
                 <div>
