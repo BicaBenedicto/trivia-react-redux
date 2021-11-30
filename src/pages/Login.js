@@ -95,17 +95,17 @@ class Login extends Component {
           </Form>
         </div>
         <div>
-        <Button
-          className="m-2 config-button"
-          variant="secondary"
-          type="button"
-          data-testid="btn-settings"
-          onClick={ () => this.redirectSettings() }
-        >
-          Configurações
-        </Button>
-      </div>
-    </>
+          <Button
+            className="m-2 config-button"
+            variant="secondary"
+            type="button"
+            data-testid="btn-settings"
+            onClick={ () => this.redirectSettings() }
+          >
+            Configurações
+          </Button>
+        </div>
+      </>
     );
   }
 }

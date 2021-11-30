@@ -1,9 +1,15 @@
 .correct-answer {
-  border: 3px solid rgb(6, 240, 15) ! important;
-  color: rgb(6, 240, 15) ! important;
+  background-color: inherit;
+  border: 3px solid rgb(6, 240, 15);
+  border-radius: 10px;
+  color: rgb(6, 240, 15);
+  margin: 10px;
 }
 
 .wrong-answer {
-  border: 3px solid red ! important;
-  color: red ! important;
+  background-color: inherit;
+  border: 3px solid red;
+  border-radius: 10px;
+  color: red;
+  margin: 10px;
 }

@@ -173,42 +173,42 @@ class Game extends Component {
         <Header />
         { isLoading ? <Loading />
           : (
-              <div
-                className="game-body"
-              >
-                <div className="timer">
-                  <i class="material-icons">alarm</i>
-                  <span>{timer}</span>
-                </div>
-                <div className="questions-body">
-                  <span
-                    data-testid="question-category"
-                  >
-                    { results[index].category }
-
-                  </span>
-                  <span data-testid="question-text">{ results[index].question }</span>
-                </div>
-                <div className="p-3 answer-body">
-                  { answers.map((answer, i) => (
-                    <Buttons
-                      key={ i }
-                      datatestid={ answer.datatestid }
-                      value={ answer.value }
-                      onButtonClick={ this.onButtonClick }
-                      answerSelected={ answerSelected }
-                      hasButtonDisabled={ hasButtonDisabled }
-                    />
-                  )) }
-                </div>
-                { answerSelected && <button
+            <div
+              className="game-body"
+            >
+              <div className="timer">
+                <i className="material-icons">alarm</i>
+                <span>{timer}</span>
+              </div>
+              <div className="questions-body">
+                <span
+                  data-testid="question-category"
+                >
+                  { results[index].category }
+                </span>
+                <span data-testid="question-text">{ results[index].question }</span>
+              </div>
+              <div className="p-3 answer-body">
+                { answers.map((answer, i) => (
+                  <Buttons
+                    key={ i }
+                    datatestid={ answer.datatestid }
+                    value={ answer.value }
+                    onButtonClick={ this.onButtonClick }
+                    answerSelected={ answerSelected }
+                    hasButtonDisabled={ hasButtonDisabled }
+                  />)) }
+              </div>
+              { answerSelected && (
+                <button
+                  type="submit"
                   data-testid="btn-next"
                   className="btn-success rounded"
                   onClick={ this.onNextButtonClick }
                 >
-                  "Próxima"
+                  Próxima
                 </button>
-                 }
+              )}
             </div>
           )}
       </>

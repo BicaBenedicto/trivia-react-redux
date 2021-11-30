@@ -22,7 +22,7 @@ class Header extends Component {
           {score}
         </span>
         <div className="icon-user-body">
-        <span
+          <span
             data-testid="header-player-name"
             className="user-name-header"
           >

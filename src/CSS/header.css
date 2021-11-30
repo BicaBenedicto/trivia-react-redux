@@ -1,32 +1,32 @@
 .header {
-    align-content: center;
-    display: flex;
-    justify-content: space-between;
-    height: 200px;
-    margin-bottom: 30px;
+  align-content: center;
+  display: flex;
+  height: 200px;
+  justify-content: space-between;
+  margin-bottom: 30px;
 }
 
 .score {
-    color: white;
-    font-size: 30px;
-    text-shadow: 2px 2px 5px black;
-    transform: translateX(-160px);
+  color: white;
+  font-size: 30px;
+  text-shadow: 2px 2px 5px black;
+  transform: translateX(-160px);
 }
 
 .icon-user-body {
-    align-items:  center;
-    display: flex;
-    margin-bottom: 10px;
-    padding-bottom: 20px;
+  align-items: center;
+  display: flex;
+  margin-bottom: 10px;
+  padding-bottom: 20px;
 }
 
-.icon-user-body img.user-icon-header {
-    border-radius: 100%;
-    transform: scale(0.5);
-    margin-right: 20px;
+.icon-user-body .user-icon-header {
+  border-radius: 100%;
+  margin-right: 20px;
+  transform: scale(0.5);
 }
 
 .icon-user-body .user-name-header {
-    font-size: 20px;
-    width: 150px;
+  font-size: 20px;
+  width: 150px;
 }

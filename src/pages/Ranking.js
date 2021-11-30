@@ -12,7 +12,7 @@ class Ranking extends Component {
       return ranking.sort((a, b) => b.score - a.score)
         .map(({ name, score, userIcon, assertions }, index) => (
           <div className="ranking-line" key={ index }>
-            <img src={userIcon } alt="Icone do jogador" />
+            <img src={ userIcon } alt="Icone do jogador" />
             <span data-testid={ `player-name-${index}` }>
 
               { name }

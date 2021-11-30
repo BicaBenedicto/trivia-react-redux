@@ -1,46 +1,49 @@
 .ranking-body {
-    align-items: center;
-    background-color: rgba(126, 252, 0, 0.288);
-    display: flex;
-    flex-direction: column;
-    width: 100vw;
+  align-items: center;
+  background-color: rgba(126, 252, 0, 0.288);
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
 }
 
 .ranking-title {
-    border-radius: 10px;
-    color: white;
-    font-size: 30px;
-    animation: rankingEffect 2s infinite both;
-    padding: 5px 10px;
+  animation: rankingEffect 2s infinite both;
+  border-radius: 10px;
+  color: white;
+  font-size: 30px;
+  padding: 5px 10px;
 }
 
 .ranking-body img {
-    border-radius: 100%;
-    transform: scale(0.5);
+  border-radius: 100%;
+  transform: scale(0.5);
 }
 
 .ranking-line {
-    color: white;
-    text-shadow: 1px 1px 5px black;
-    align-items: center;
-    align-content: center;
-    display: flex;
-    justify-content: space-between;
-    width: 50%;
+  align-content: center;
+  align-items: center;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  text-shadow: 1px 1px 5px black;
+  width: 50%;
 }
 
 @keyframes rankingEffect {
-    0%{
-        background-color: rgb(85, 165, 4);
-    }
-    50%{
-        background-color: rgb(58, 145, 0);
-    }
-    75%{
-        background-color: rgb(93, 155, 98);
-    }
-    100%{
-        background-color: rgb(58, 145, 0);
-    }
-    
+
+  0% {
+    background-color: rgb(85, 165, 4);
+  }
+
+  50% {
+    background-color: rgb(58, 145, 0);
+  }
+
+  75% {
+    background-color: rgb(93, 155, 98);
+  }
+
+  100% {
+    background-color: rgb(58, 145, 0);
+  }
 }
