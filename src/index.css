@@ -1,13 +1,72 @@
-/* body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+button.answer-button {
+  background-color: inherit;
+  border: 3px solid rgb(132, 197, 235);
+  border-radius: 10px;
+  color: rgb(132, 197, 235);
+  margin: 10px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-} */
+button.answer-button:hover {
+  background-color: rgb(132, 197, 235);
+  color: white;
+}
+
+.glow-on-hover {
+  background: rgba(17, 17, 17, 0.24);
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  height: 50px;
+  outline: none;
+  position: relative;
+  z-index: 0;
+  width: 220px;
+}
+
+.glow-on-hover:before {
+  animation: glowing 20s linear infinite;
+  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  background-size: 400%;
+  border-radius: 10px;
+  content: '';
+  filter: blur(5px);
+  height: calc(100% + 4px);
+  left:-2px;
+  opacity: 0;
+  position: absolute;
+  top: -2px;
+  transition: opacity .3s ease-in-out;
+  width: calc(100% + 4px);
+  z-index: -1;
+}
+
+.glow-on-hover:active {
+  color: rgba(0, 0, 0, 0.212)
+}
+
+.glow-on-hover:active:after {
+  background: transparent;
+}
+
+.glow-on-hover:hover:before {
+  opacity: 1;
+}
+
+.glow-on-hover:after {
+  background: rgba(17, 17, 17, 0.404);
+  border-radius: 10px;
+  content: '';
+  left: 0;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+}
+
+@keyframes glowing {
+  0% { background-position: 0 0; }
+  50% { background-position: 400% 0; }
+  100% { background-position: 0 0; }
+}

@@ -13,8 +13,8 @@ class Button extends Component {
 
   checkDatatestid() {
     const { datatestid } = this.props;
-    if (datatestid === 'correct-answer') return `correct-answer ${answerButton}`;
-    if (datatestid.includes('wrong-answer')) return `wrong-answer ${answerButton}`;
+    if (datatestid === 'correct-answer') return 'correct-answer';
+    if (datatestid.includes('wrong-answer')) return 'wrong-answer';
   }
 
   render() {

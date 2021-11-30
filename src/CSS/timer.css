@@ -1,0 +1,14 @@
+.timer {
+  align-content: center;
+  align-items: center;
+  align-self: flex-start;
+  display: flex;
+  justify-content: space-around;
+  position: absolute;
+  transform: translateY(-50px);
+}
+
+.timer span {
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgb(189, 188, 188);
+}

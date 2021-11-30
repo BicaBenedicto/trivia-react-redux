@@ -2,7 +2,11 @@ import PropTypes from 'prop-types';
 import { MD5 } from 'crypto-js';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Button, Form } from 'react-bootstrap';
 import { getUser, getEmail, actionApiToken, getUserIcon } from '../actions';
+import LoginInputs from '../components/LoginInputs';
+import '../CSS/login.css';
+import trivia from '../trivia.png';
 
 class Login extends Component {
   constructor() {
@@ -74,42 +78,32 @@ class Login extends Component {
 
     return (
       <>
-        <form onSubmit={ this.onButtonSubmit }>
-          <h2>Login</h2>
-          <label htmlFor="user-input">
-            Nome:
-            <input
-              id="user-input"
-              data-testid="input-player-name"
-              type="text"
-              name="name"
-              value={ name }
-              onChange={ this.onInputChange }
-            />
-          </label>
-          <label htmlFor="email-input">
-            E-mail:
-            <input
-              id="email-input"
-              data-testid="input-gravatar-email"
-              type="email"
-              name="email"
-              value={ email }
-              onChange={ this.onInputChange }
-            />
-          </label>
-          <button type="submit" data-testid="btn-play" disabled={ hasButtonDisabled }>
-            Jogar
-          </button>
-        </form>
         <div>
-          <button
+          <img
+            src={ trivia }
+            alt="trivia"
+            className="w-25 p-3
+          position-absolute top-0 start-50 translate-middle-x"
+          />
+          <Form className="mb-3" onSubmit={ this.onButtonSubmit }>
+            <LoginInputs
+              name={ name }
+              email={ email }
+              hasButtonDisabled={ hasButtonDisabled }
+              onInputChange={ this.onInputChange }
+            />
+          </Form>
+        </div>
+        <div>
+          <Button
+            className="m-2 config-button"
+            variant="secondary"
             type="button"
             data-testid="btn-settings"
             onClick={ () => this.redirectSettings() }
           >
             Configurações
-          </button>
+          </Button>
         </div>
       </>
     );

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import '../CSS/ranking.css';
 
 class Ranking extends Component {
   recoveryStorage() {
@@ -9,8 +10,9 @@ class Ranking extends Component {
     if (ranking.length !== 0) {
       console.log(ranking);
       return ranking.sort((a, b) => b.score - a.score)
-        .map(({ name, score, playerIcon, assertions }, index) => (
-          <div key={ index }>
+        .map(({ name, score, userIcon, assertions }, index) => (
+          <div className="ranking-line" key={ index }>
+            <img src={ userIcon } alt="Icone do jogador" />
             <span data-testid={ `player-name-${index}` }>
 
               { name }
@@ -23,7 +25,6 @@ class Ranking extends Component {
               Pontuação:
               { score }
             </span>
-            <img src={ playerIcon } alt="Icone do jogador" />
           </div>
         ));
     }
@@ -32,13 +33,13 @@ class Ranking extends Component {
   render() {
     const { history } = this.props;
     return (
-      <div>
-        {/* <Header /> */}
-        <span data-testid="ranking-title">Ranking</span>
+      <div className="ranking-body">
+        <span className="ranking-title" data-testid="ranking-title">Ranking</span>
         {this.recoveryStorage()}
         <button
           type="button"
           data-testid="btn-go-home"
+          className="glow-on-hover"
           onClick={ () => history.push('/') }
         >
           Ir para Home
@@ -48,6 +49,7 @@ class Ranking extends Component {
     );
   }
 }
+
 Ranking.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,

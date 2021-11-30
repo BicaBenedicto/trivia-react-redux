@@ -1,0 +1,19 @@
+body {
+  align-items: center;
+  background-color: #7cffcb;
+  background-image: linear-gradient(315deg, #7cffcb 0%, #74f2ce 74%);
+  display: flex;
+  flex-direction: column;
+  height: 70vh;
+  justify-content: space-around;
+}
+
+.loginCard {
+  background-color: #ebeceb;
+  border-radius: 20px;
+  font-family: monospace;
+}
+
+.config-button {
+  transform: translateY(-200px) translateX(-600px);
+}

@@ -3,9 +3,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Loading from '../components/Loading';
 import Header from '../components/Header';
-import Button from '../components/Button';
+import Buttons from '../components/Button';
 import { getAssertion, resetAssertions } from '../actions';
 import calculatedScorePoints from '../services/Score';
+import '../CSS/timer.css';
+import '../CSS/game.css';
 
 const answerButton = 'answer-button';
 
@@ -171,35 +173,42 @@ class Game extends Component {
         <Header />
         { isLoading ? <Loading />
           : (
-            <div>
-              <div>
+            <div
+              className="game-body"
+            >
+              <div className="timer">
+                <i className="material-icons">alarm</i>
+                <span>{timer}</span>
+              </div>
+              <div className="questions-body">
                 <span
                   data-testid="question-category"
                 >
                   { results[index].category }
-
                 </span>
                 <span data-testid="question-text">{ results[index].question }</span>
-                <span>{timer}</span>
               </div>
-              <div>
+              <div className="p-3 answer-body">
                 { answers.map((answer, i) => (
-                  <Button
+                  <Buttons
                     key={ i }
                     datatestid={ answer.datatestid }
                     value={ answer.value }
                     onButtonClick={ this.onButtonClick }
                     answerSelected={ answerSelected }
                     hasButtonDisabled={ hasButtonDisabled }
-                  />
-                )) }
+                  />)) }
               </div>
-              { answerSelected && <Button
-                datatestid="btn-next"
-                value="Próxima"
-                onButtonClick={ this.onNextButtonClick }
-                answerSelected={ answerSelected }
-              /> }
+              { answerSelected && (
+                <button
+                  type="submit"
+                  data-testid="btn-next"
+                  className="btn-success rounded"
+                  onClick={ this.onNextButtonClick }
+                >
+                  Próxima
+                </button>
+              )}
             </div>
           )}
       </>
