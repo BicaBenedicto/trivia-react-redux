@@ -78,7 +78,7 @@ class Login extends Component {
 
     return (
       <>
-        <div>
+        <div className="login-form">
           <img
             src={ trivia }
             alt="trivia"
